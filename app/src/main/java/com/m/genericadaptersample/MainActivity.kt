@@ -54,11 +54,40 @@ class MainActivity : AppCompatActivity() {
             arrayListCoupleVerticalImages.add(horizontalImageModel)
         }
 
+        val verticalImageListModel : VerticalImageListModel = VerticalImageListModel(arrayListImagesNatureVertical,Constants.VERTICAL_LIST)
+        verticalImageListModel.title = "Nature"
+
+
+        // Adding two food vertical images
+        for (i in 0..1) {
+            arrayListImages?.add(arrayListFoodVerticalImages[i])
+        }
+
+        // Adding two couple horizontal images list
+        val horizontalImageListModel : HorizontalImageListModel = HorizontalImageListModel(arrayListCoupleVerticalImages,Constants.HORIZONTAL_LIST)
+        horizontalImageListModel.title = "Couples"
+        arrayListImages?.add(horizontalImageListModel)
+
+        // Adding two vertical food images
+        for (i in 2..3) {
+            arrayListImages?.add(arrayListFoodVerticalImages[i])
+        }
+
+        //Adding verital images list
+        arrayListImages?.add(verticalImageListModel)
+
+        // Adding two more vertical food images
+        for (i in 4..5) {
+            arrayListImages?.add(arrayListFoodVerticalImages[i])
+        }
+
         showFeedItems(vertical_recyclerview,arrayListImages)
 
     }
 
+    //endregion
 
+    //region gettring images from reosurces
     private fun getVerticalImages(numer : Int) : Int{
         return when(numer){
             1 -> R.drawable.v1
@@ -104,9 +133,7 @@ class MainActivity : AppCompatActivity() {
             else -> R.drawable.c1
         }
     }
-
     //endregion
-
 
     //region adapter
 
@@ -123,31 +150,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showFeedItems(recyclerView: RecyclerView, list: ArrayList<Any>?) {
-
-        val verticalImageListModel : VerticalImageListModel = VerticalImageListModel(arrayListImagesNatureVertical,Constants.VERTICAL_LIST)
-        verticalImageListModel.title = "Nature"
-        val horizontalImageListModel : HorizontalImageListModel = HorizontalImageListModel(arrayListCoupleVerticalImages,Constants.HORIZONTAL_LIST)
-        horizontalImageListModel.title = "Couples"
-
-        for (i in 0..1) {
-            list?.add(arrayListFoodVerticalImages[i])
-        }
-        list?.add(horizontalImageListModel)
-
-        for (i in 2..3) {
-            list?.add(arrayListFoodVerticalImages[i])
-        }
-
-        list?.add(verticalImageListModel)
-
-        for (i in 4..5) {
-            list?.add(arrayListFoodVerticalImages[i])
-        }
-
-//        for (i in 1..2) {
-//            list?.add(arrayListImagesNatureVertical[i])
-//        }
-
 
         if (adapter == null) {
             val viewBinders = mutableMapOf<FeedItemClass, FeedItemBinder>()
